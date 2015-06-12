@@ -20,6 +20,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Documentação da API de shortcodes: https://codex.wordpress.org/Shortcode_API
  * Documentação do jquery.qrcode.js: https://github.com/jeromeetienne/jquery-qrcode
+ *
+ * Exemplo do shortcode:
+ *
+ * [qrcode width="100" height="100" content="http://belohorizonte.wordcamp.org/"]
  */
 function wc_bh_qrcode_shortcode_register( $atts ) {
 	$args = shortcode_atts( array(
