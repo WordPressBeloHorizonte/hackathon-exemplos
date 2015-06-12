@@ -172,21 +172,21 @@ class WC_BH_Facebook_Likebox_Widget extends WP_Widget {
 /**
  * Registra o Widget no WordPress.
  */
-function wc_bh_register_facebook_likebox_widget() {
+function wc_bh_facebook_likebox_widget_register() {
 	register_widget( 'WC_BH_Facebook_Likebox_Widget' );
 }
 
-add_action( 'widgets_init', 'wc_bh_register_facebook_likebox_widget' );
+add_action( 'widgets_init', 'wc_bh_facebook_likebox_widget_register' );
 
 /**
  * Carrega o textdomain do plugin.
  *
  * Documentação: https://codex.wordpress.org/Function_Reference/load_plugin_textdomain
  */
-function wc_bh_load_textdomain() {
+function wc_bh_facebook_likebox_widget_load_textdomain() {
 	load_plugin_textdomain( 'facebook-likebox-widget', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 
-add_action( 'plugins_loaded', 'wc_bh_load_textdomain' );
+add_action( 'plugins_loaded', 'wc_bh_facebook_likebox_widget_load_textdomain' );
 
 endif;
