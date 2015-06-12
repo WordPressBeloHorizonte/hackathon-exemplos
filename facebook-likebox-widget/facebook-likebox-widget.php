@@ -17,10 +17,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'WC_BH_Facebook_Likebox_Widget' ) ) :
 
+/**
+ * Facebook likebox widget.
+ *
+ * Baseado em https://codex.wordpress.org/Widgets_API
+ */
 class WC_BH_Facebook_Likebox_Widget extends WP_Widget {
 
 	/**
-	 * Register widget with WordPress.
+	 * Registra o widget no WordPress WordPress.
 	 */
 	public function __construct() {
 		parent::__construct(
@@ -31,13 +36,13 @@ class WC_BH_Facebook_Likebox_Widget extends WP_Widget {
 	}
 
 	/**
-	 * Back-end widget form.
+	 * Formulário do widget no backend do WordPress.
 	 *
 	 * @see WP_Widget::form()
 	 *
-	 * @param  array $instance Previously saved values from database.
+	 * @param  array $instance Dados salvos anteriormente no banco de dados.
 	 *
-	 * @return string          Widget options form.
+	 * @return string
 	 */
 	public function form( $instance ) {
 		$title         = isset( $instance['title'] ) ? $instance['title'] : '';
@@ -108,14 +113,14 @@ class WC_BH_Facebook_Likebox_Widget extends WP_Widget {
 	}
 
 	/**
-	 * Sanitize widget form values as they are saved.
+	 * Escapa e limpa dados do formulário antes de salvar.
 	 *
 	 * @see WP_Widget::update()
 	 *
-	 * @param  array $new_instance Values just sent to be saved.
-	 * @param  array $old_instance Previously saved values from database.
+	 * @param  array $new_instance Novos valores enviados.
+	 * @param  array $old_instance Valores salvos anteriormente no banco de dados.
 	 *
-	 * @return array               Updated safe values to be saved.
+	 * @return array               Dados limpos e prontos para serem salvos.
 	 */
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
@@ -133,12 +138,12 @@ class WC_BH_Facebook_Likebox_Widget extends WP_Widget {
 	}
 
 	/**
-	 * Outputs the content of the widget.
+	 * Exibe o conteúdo do widget.
 	 *
-	 * @param  array  $args      Widget arguments.
-	 * @param  array  $instance  Widget options.
+	 * @param  array  $args      Argumentos do Widget (título e HTML que será exibido antes e depois do widget e do título).
+	 * @param  array  $instance  Opções do widget.
 	 *
-	 * @return string            Facebook like box.
+	 * @return string
 	 */
 	public function widget( $args, $instance ) {
 		$title = apply_filters( 'widget_title', $instance['title'] );
@@ -165,12 +170,23 @@ class WC_BH_Facebook_Likebox_Widget extends WP_Widget {
 }
 
 /**
- * Register the Likebox Widget.
+ * Registra o Widget no WordPress.
  */
 function wc_bh_register_facebook_likebox_widget() {
 	register_widget( 'WC_BH_Facebook_Likebox_Widget' );
 }
 
 add_action( 'widgets_init', 'wc_bh_register_facebook_likebox_widget' );
+
+/**
+ * Carrega o textdomain do plugin.
+ *
+ * Documentação: https://codex.wordpress.org/Function_Reference/load_plugin_textdomain
+ */
+function wc_bh_load_textdomain() {
+	load_plugin_textdomain( 'facebook-likebox-widget', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+}
+
+add_action( 'plugins_loaded', 'wc_bh_load_textdomain' );
 
 endif;
