@@ -1,0 +1,17 @@
+#fb-root {
+	display: none;
+	visibility: hidden;
+}
+
+.share-buttons iframe {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.share-buttons .fb-like {
+	margin-left: 20px;
+}
+
+.share-buttons iframe.twitter-share-button {
+	margin-top: 9px;
+}
